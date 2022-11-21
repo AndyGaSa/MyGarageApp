@@ -17,3 +17,5 @@ const initialState: Car[] = []
  });
 
  export const { addCars } = carsSlice.actions;
+
+ export default carsSlice.reducer;
