@@ -1,13 +1,36 @@
 import { Cars } from '@/data';
-import { minWidth } from '@mui/system';
+import { Car } from '@/models';
+import { Checkbox } from '@mui/material';
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
-import React from 'react';
+import React, { useState } from 'react';
 
 export interface HomeInterface{}
 
 const Home: React.FC<HomeInterface> = () => {
+    const [selectedCars, setSelectedCars] = useState<Car[]>([]);
     const pageSize = 5;
+
+    const findCar = (car: Car) => !!selectedCars.find(c => c.id === car.id)
+    const filterCar = (car: Car) => selectedCars.filter(c => c.id !== car.id)
+
+    const handleChange = (car: Car) => {
+        setSelectedCars(findCar(car) ? filterCar(car) : [...selectedCars, car])
+    };
     const columns = [
+        {
+            field:'actions',
+            type:'actions',
+            sortable:false,
+            headerName: '',
+            flex: 1,
+            minWidth: 50,
+            renderCell: (params: GridRenderCellParams)=> (
+                <>{<Checkbox size="small" 
+                checked={findCar(params.row)}
+                onChange={() => handleChange(params.row)}
+                />}</>
+           ) 
+        },
         {
             field:'name',
             headerName: 'Name',
