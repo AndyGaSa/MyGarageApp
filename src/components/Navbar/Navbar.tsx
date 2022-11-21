@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarInterface> = () => {
     <>
       <CustomDialog>
         <FavoriteTable />
-      </CustomDialog>∂
+      </CustomDialog>
       <AppBar position="fixed" color="default">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

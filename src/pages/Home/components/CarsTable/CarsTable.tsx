@@ -2,7 +2,7 @@ import { Car } from '@/models';
 import { addFavorite } from '@/redux/states';
 import { AppStore } from '@/redux/store';
 import { Checkbox } from '@mui/material';
-import { red } from '@mui/material/colors';
+import LinearProgress from '@mui/material/LinearProgress';
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,13 +66,17 @@ const CarsTable : React.FC<CarsTableInterface> = () => {
 		setSelectedCars(favoriteCars);
 	  }, [favoriteCars]);
 
+      
 	    return (
         <DataGrid
+        components={{
+            NoRowsOverlay: LinearProgress,
+          }}
         disableColumnSelector
         disableSelectionOnClick
         autoHeight
         getRowId={(row: any) => row.id}
-        pageSize={pageSize}
+        pageSize={pageSize} 
         rowsPerPageOptions={[pageSize]}
         rows={stateCars}
         columns={columns}
