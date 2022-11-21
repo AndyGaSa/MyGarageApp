@@ -1,4 +1,4 @@
-export const People = [
+export const Cars = [
     {
       id: '1',
       name: 'Ibiza',
