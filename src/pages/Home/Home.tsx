@@ -3,12 +3,14 @@ import { Car } from '@/models';
 import { Checkbox } from '@mui/material';
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export interface HomeInterface{}
 
 const Home: React.FC<HomeInterface> = () => {
     const [selectedCars, setSelectedCars] = useState<Car[]>([]);
     const pageSize = 5;
+    const dispatch = useDispatch();
 
     const findCar = (car: Car) => !!selectedCars.find(c => c.id === car.id)
     const filterCar = (car: Car) => selectedCars.filter(c => c.id !== car.id)
