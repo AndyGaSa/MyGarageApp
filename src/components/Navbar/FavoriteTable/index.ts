@@ -1,1 +1,1 @@
-export { default as FavoriteTable } from './FavoriteTable';
+export { default as FavoriteTable } from "./FavoriteTable";

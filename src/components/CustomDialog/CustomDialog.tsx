@@ -1,7 +1,7 @@
-import { SubjectManager } from '@/models';
-import Dialog from '@mui/material/Dialog';
-import { useEffect, useState } from 'react';
-import { Subscription } from 'rxjs';
+import { SubjectManager } from "@/models";
+import Dialog from "@mui/material/Dialog";
+import { useEffect, useState } from "react";
+import { Subscription } from "rxjs";
 
 interface Props {
   children: React.ReactNode;
@@ -16,8 +16,12 @@ export const CustomDialog = ({ children }: Props) => {
   let closeSubject$ = new Subscription();
 
   useEffect(() => {
-    openSubject$ = dialogOpenSubject$.getSubject.subscribe(() => handleClickOpen());
-    closeSubject$ = dialogCloseSubject$.getSubject.subscribe(() => handleClose());
+    openSubject$ = dialogOpenSubject$.getSubject.subscribe(() =>
+      handleClickOpen()
+    );
+    closeSubject$ = dialogCloseSubject$.getSubject.subscribe(() =>
+      handleClose()
+    );
     return () => {
       openSubject$.unsubscribe();
       closeSubject$.unsubscribe();

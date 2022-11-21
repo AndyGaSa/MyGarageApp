@@ -1,14 +1,14 @@
-import { Car } from '@/models';
-import { configureStore } from '@reduxjs/toolkit';
-import { carsSlice, favoritesSlice } from './states';
+import { Car } from "@/models";
+import { configureStore } from "@reduxjs/toolkit";
+import { carsSlice, favoritesSlice } from "./states";
 export interface AppStore {
-    cars: Car[];
-    favorites: Car[];
+  cars: Car[];
+  favorites: Car[];
 }
 
 export default configureStore<AppStore>({
-    reducer: {
-        cars: carsSlice.reducer,
-        favorites: favoritesSlice.reducer,
-    }
+  reducer: {
+    cars: carsSlice.reducer,
+    favorites: favoritesSlice.reducer,
+  },
 });

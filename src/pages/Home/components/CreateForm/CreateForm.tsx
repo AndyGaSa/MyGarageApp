@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 export interface CreateFormInterface {}
 
-const CreateForm : React.FC<CreateFormInterface> = () => {
-	return <div>Hola</div>;
+const CreateForm: React.FC<CreateFormInterface> = () => {
+  return <div>Hola</div>;
 };
 
 export default CreateForm;

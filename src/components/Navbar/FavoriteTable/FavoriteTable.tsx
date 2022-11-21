@@ -1,11 +1,11 @@
-import { Car } from '@/models';
-import { removeFavorite } from '@/redux/states';
-import { AppStore } from '@/redux/store';
-import { Delete } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
-import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Car } from "@/models";
+import { removeFavorite } from "@/redux/states";
+import { AppStore } from "@/redux/store";
+import { Delete } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export interface FavoriteTableInterface {}
 
@@ -20,46 +20,51 @@ const FavoriteTable: React.FC<FavoriteTableInterface> = () => {
 
   const colums = [
     {
-      field: 'actions',
-      type: 'actions',
+      field: "actions",
+      type: "actions",
       sortable: false,
-      headerName: '',
+      headerName: "",
       width: 50,
       renderCell: (params: GridRenderCellParams) => (
         <>
           {
-            <IconButton color="secondary" aria-label="favorites" component="label" onClick={() => handleClick(params.row)}>
+            <IconButton
+              color="secondary"
+              aria-label="favorites"
+              component="label"
+              onClick={() => handleClick(params.row)}
+            >
               <Delete />
             </IconButton>
           }
         </>
-      )
+      ),
     },
     {
-      field: 'name',
-      headerName: 'Name',
+      field: "name",
+      headerName: "Name",
       flex: 1,
       minWidth: 150,
-      renderCell: (params: GridRenderCellParams) => <>{params.value}</>
+      renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
     },
     {
-      field: 'category',
-      headerName: 'Categories',
+      field: "category",
+      headerName: "Categories",
       flex: 1,
-      renderCell: (params: GridRenderCellParams) => <>{params.value}</>
+      renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
     },
     {
-      field: 'company',
-      headerName: 'Company',
+      field: "company",
+      headerName: "Company",
       flex: 1,
-      renderCell: (params: GridRenderCellParams) => <>{params.value}</>
+      renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
     },
     {
-      field: 'CV',
-      headerName: 'Horsepower',
+      field: "CV",
+      headerName: "Horsepower",
       flex: 1,
-      renderCell: (params: GridRenderCellParams) => <>{params.value}</>
-    }
+      renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
+    },
   ];
 
   return (

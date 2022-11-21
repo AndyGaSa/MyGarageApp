@@ -1,2 +1,2 @@
-export * from './cars';
-export * from './favorites';
+export * from "./cars";
+export * from "./favorites";
