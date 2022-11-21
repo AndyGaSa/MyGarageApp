@@ -15,3 +15,5 @@ const initialState: Car[] = []
         }
     } 
  });
+
+ export const { addFavorite } = favoritesSlice.actions;

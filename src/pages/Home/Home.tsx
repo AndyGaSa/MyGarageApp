@@ -1,8 +1,10 @@
 import { Cars } from '@/data';
 import { Car } from '@/models';
+import { addCars, addFavorite } from '@/redux/states';
+import store from '@/redux/store';
 import { Checkbox } from '@mui/material';
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 export interface HomeInterface{}
@@ -16,7 +18,9 @@ const Home: React.FC<HomeInterface> = () => {
     const filterCar = (car: Car) => selectedCars.filter(c => c.id !== car.id)
 
     const handleChange = (car: Car) => {
-        setSelectedCars(findCar(car) ? filterCar(car) : [...selectedCars, car])
+        const filteredCars = findCar(car) ? filterCar(car) : [...selectedCars, car];
+        dispatch(addFavorite(filteredCars));
+        setSelectedCars(filteredCars)
     };
     const columns = [
         {
@@ -24,7 +28,6 @@ const Home: React.FC<HomeInterface> = () => {
             type:'actions',
             sortable:false,
             headerName: '',
-            flex: 1,
             minWidth: 50,
             renderCell: (params: GridRenderCellParams)=> (
                 <>{<Checkbox size="small" 
@@ -55,7 +58,12 @@ const Home: React.FC<HomeInterface> = () => {
             renderCell: (params: GridRenderCellParams)=> <>{params.value}</>
         },
 
-]
+    ];
+
+    useEffect ( () => {
+        dispatch(addCars(Cars));
+    }, []);
+
     return (
         <DataGrid
         disableColumnSelector
@@ -64,7 +72,7 @@ const Home: React.FC<HomeInterface> = () => {
         getRowId={(row: any) => row.id}
         pageSize={pageSize}
         rowsPerPageOptions={[pageSize]}
-        rows={Cars}
+        rows={store.getState().cars}
         columns={columns}
         />
         );
