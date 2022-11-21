@@ -61,6 +61,7 @@ const FavoriteTable: React.FC<FavoriteTableInterface> = () => {
       renderCell: (params: GridRenderCellParams) => <>{params.value}</>
     }
   ];
+
   return (
     <DataGrid
       rows={stateFavorites}

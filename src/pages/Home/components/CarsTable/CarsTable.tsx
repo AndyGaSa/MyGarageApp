@@ -2,6 +2,7 @@ import { Car } from '@/models';
 import { addFavorite } from '@/redux/states';
 import { AppStore } from '@/redux/store';
 import { Checkbox } from '@mui/material';
+import { red } from '@mui/material/colors';
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,19 +27,6 @@ const CarsTable : React.FC<CarsTableInterface> = () => {
 
     const columns = [
         {
-            field:'actions',
-            type:'actions',
-            sortable:false,
-            headerName: '',
-            minWidth: 50,
-            renderCell: (params: GridRenderCellParams)=> (
-                <>{<Checkbox size="small" 
-                checked={findCar(params.row)}
-                onChange={() => handleChange(params.row)}
-                />}</>
-           ) 
-        },
-        {
             field:'name',
             headerName: 'Name',
             flex: 1,
@@ -59,7 +47,19 @@ const CarsTable : React.FC<CarsTableInterface> = () => {
             minWidth: 150,
             renderCell: (params: GridRenderCellParams)=> <>{params.value}</>
         },
-
+		{
+            field:'actions',
+            type:'actions',
+            sortable:false,
+            headerName: 'Fav',
+            minWidth: 50,
+            renderCell: (params: GridRenderCellParams)=> (
+                <>{<Checkbox size="small" 
+                checked={findCar(params.row)}
+                onChange={() => handleChange(params.row)}
+                />}</>
+           ) 
+        },
     ];
 
 	useEffect(() => {
@@ -76,6 +76,10 @@ const CarsTable : React.FC<CarsTableInterface> = () => {
         rowsPerPageOptions={[pageSize]}
         rows={stateCars}
         columns={columns}
+		sx={{
+			background: 'white',
+			opacity: 0.98,
+		  }}
         />
         );
 };
