@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 
@@ -10,34 +10,31 @@ import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   Container,
   CssBaseline,
-  FormControlLabel,
   TextField,
   Typography,
 } from "@mui/material";
 
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CarRentalRoundedIcon from '@mui/icons-material/CarRentalRounded';
 import { Car } from "@/models";
-
-interface FormState {
-  email: string;
-  password: string;
-  remember: boolean;
-}
+import { addCars } from "@/redux/states/cars";
+import { AppStore } from "@/redux/store";
+import CarRentalRoundedIcon from "@mui/icons-material/CarRentalRounded";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const validationSchema = yup.object({
-  email: yup
+  name: yup
     .string()
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
+    .min(3, "Name should be of minimum 3 characters length")
+    .required("Name is required"),
+  category: yup
     .string()
-    .min(3, "Password should be of minimum 3 characters length")
-    .required("Password is required"),
+    .min(3, "Category should be of minimum 3 characters length")
+    .required("Category is required"),
+  company: yup
+    .string()
+    .min(3, "Category should be of minimum 3 characters length")
+    .required("Category is required"),
 });
 
 const StyledBox = styled(Box)`
@@ -49,22 +46,20 @@ const StyledBox = styled(Box)`
 
 const CreateForm: React.FC<CreateFormInterface> = () => {
   const dispatch = useDispatch();
+  const stateCars = useSelector((store: AppStore) => store.cars);
   const theme = createTheme();
 
-  const handleChange = (values: Car) => {
-    const { name, category, company } = values;
-
-    const data = {
-      name,
-      category,
-      company,
-    };
+  const handleChange = (car: Car) => {
+    car.id = stateCars.length + 1;
+    const newCarsList = [...stateCars, car];
+    dispatch(addCars(newCarsList));
   };
 
   const formik = useFormik({
     initialValues: {
       name: "",
       category: "",
+      company: "",
     },
     validationSchema: validationSchema,
     onSubmit: handleChange,
@@ -75,8 +70,8 @@ const CreateForm: React.FC<CreateFormInterface> = () => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <StyledBox>
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-			<CarRentalRoundedIcon/>
+          <Avatar sx={{ bgcolor: "secondary.main" }}>
+            <CarRentalRoundedIcon />
           </Avatar>
           <Typography component="h1" variant="h6">
             Add a new car
@@ -108,13 +103,23 @@ const CreateForm: React.FC<CreateFormInterface> = () => {
               onChange={formik.handleChange}
               error={formik.touched.category && Boolean(formik.errors.category)}
               helperText={formik.touched.category && formik.errors.category}
+              sx={{ mb: 1 }}
+            />
+            <TextField
+              fullWidth
+              id="company"
+              name="company"
+              label="Company"
+              type="company"
+              value={formik.values.company}
+              onChange={formik.handleChange}
+              error={formik.touched.company && Boolean(formik.errors.company)}
+              helperText={formik.touched.company && formik.errors.company}
+              sx={{ mb: 1 }}
             />
             <Button
               type="submit"
               fullWidth
-              onClick={() => {
-                alert("clicked");
-              }}
               variant="contained"
               sx={{ mt: 3, mb: 5 }}
             >

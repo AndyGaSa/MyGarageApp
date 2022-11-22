@@ -1,5 +1,6 @@
-import { Car } from "@/models";
-import { addCars } from "@/redux/states";
+import { Car, LocalStorageTypes } from "@/models";
+import { addCars } from "@/redux/states/cars";
+import { getLocalStorage } from "@/utils";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -16,6 +17,12 @@ const Home: React.FC<HomeInterface> = () => {
   const handleAddForm = () => setAddForm(!addForm);
 
   useEffect(() => {
+    const checkLocal = JSON.parse(getLocalStorage(LocalStorageTypes.CARS));
+    console.log(
+      "🚀 ~ file: Home.tsx ~ line 21 ~ useEffect ~ checkLocal",
+      checkLocal
+    );
+    //console.log('siestoyaquiesq no hay local storage')
     const loadDataFromAPI = async () => {
       const data = await fetch("https://seat-cars-api.herokuapp.com/cars", {
         method: "GET",
