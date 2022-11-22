@@ -11,7 +11,7 @@ export const carsSlice = createSlice({
     : initialState,
   reducers: {
     addCars: (state, action) => {
-      setLocalStorage(LocalStorageTypes.CARS, state);
+      setLocalStorage(LocalStorageTypes.CARS, action.payload);
       return action.payload;
     },
   },
