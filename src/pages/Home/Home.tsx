@@ -1,5 +1,6 @@
 import { Car } from "@/models";
 import { addCars } from "@/redux/states";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CarsTable } from "./components";
@@ -31,15 +32,16 @@ const Home: React.FC<HomeInterface> = () => {
 
   return (
     <>
-      <div className="styles.title">
-        <input
-          type="button"
-          value={!addForm ? "Add a new car" : "X"}
-          onClick={() => {
-            handleAddForm();
-          }}
-        />
-      </div>
+      <Button
+        type="submit"
+        onClick={() => {
+          handleAddForm();
+        }}
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+      >
+        {!addForm ? "Add a new car" : "X"}
+      </Button>
       {addForm ? <CreateForm /> : null}
       <CarsTable />
     </>

@@ -1,7 +1,7 @@
 export interface Car {
-  id: string;
+  id?: string;
   name: string;
   category: string;
-  company: string;
-  CV: number;
+  company?: string;
+  CV?: number;
 }
