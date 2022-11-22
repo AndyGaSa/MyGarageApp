@@ -6,6 +6,7 @@ export interface AppStore {
   favorites: Car[];
 }
 
+/* Exporting the store. */
 export default configureStore<AppStore>({
   reducer: {
     cars: carsSlice.reducer,

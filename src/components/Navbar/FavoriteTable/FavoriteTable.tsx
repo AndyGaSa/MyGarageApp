@@ -1,3 +1,4 @@
+/* A component that displays the favorite cars. */
 import { Car } from "@/models";
 import { removeFavorite } from "@/redux/states";
 import { AppStore } from "@/redux/store";
@@ -14,10 +15,16 @@ const FavoriteTable: React.FC<FavoriteTableInterface> = () => {
   const dispatch = useDispatch();
   const stateFavorites = useSelector((store: AppStore) => store.favorites);
 
+  /**
+   * The function takes a car as an argument, and then dispatches an action to remove that car from the
+   * favorites list
+   * @param {Car} car - Car - this is the car object that is passed in from the map function.
+   */
   const handleClick = (car: Car) => {
     dispatch(removeFavorite(car));
   };
 
+  /* Defining the columns of the table. */
   const colums = [
     {
       field: "actions",
@@ -67,6 +74,7 @@ const FavoriteTable: React.FC<FavoriteTableInterface> = () => {
     },
   ];
 
+  /* Rendering the table. */
   return (
     <DataGrid
       rows={stateFavorites}

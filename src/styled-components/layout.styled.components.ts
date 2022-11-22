@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+/* Creating a styled component. */
 export const LayoutContainer = styled.div`
   width: 80vw;
 

@@ -12,10 +12,14 @@ export interface NavbarInterface {}
 const Navbar: React.FC<NavbarInterface> = () => {
   const stateFavorites = useSelector((store: AppStore) => store.favorites);
 
+/**
+ * It sets the subject to true.
+ */
   const handleClick = () => {
     dialogOpenSubject$.setSubject = true;
   };
 
+/* Returning the custom dialog and the app bar. */
   return (
     <>
       <CustomDialog>

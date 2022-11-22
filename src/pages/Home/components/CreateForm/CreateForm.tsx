@@ -22,6 +22,7 @@ import { AppStore } from "@/redux/store";
 import CarRentalRoundedIcon from "@mui/icons-material/CarRentalRounded";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+/* A validation schema that is used to validate the form with yup. */
 const validationSchema = yup.object({
   name: yup
     .string()
@@ -49,12 +50,18 @@ const CreateForm: React.FC<CreateFormInterface> = () => {
   const stateCars = useSelector((store: AppStore) => store.cars);
   const theme = createTheme();
 
+/**
+ * We're taking the current state of the cars list, adding a new car to it, and then dispatching the
+ * new list to the reducer
+ * @param {Car} car - Car - this is the car object that is passed in from the CarForm component.
+ */
   const handleChange = (car: Car) => {
     car.id = stateCars.length + 1;
     const newCarsList = [...stateCars, car];
     dispatch(addCars(newCarsList));
   };
 
+/* A hook that is used to handle form state and validation. */
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -65,6 +72,7 @@ const CreateForm: React.FC<CreateFormInterface> = () => {
     onSubmit: handleChange,
   });
 
+  /* It's a React component that is using the Material UI library to create a form. */
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

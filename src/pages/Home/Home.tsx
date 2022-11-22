@@ -15,6 +15,10 @@ const Home: React.FC<HomeInterface> = () => {
 
   const handleAddForm = () => setAddForm(!addForm);
 
+ /**
+  * We're using the fetch API to make a GET request to the Seat Cars API, then we're converting the
+  * response to JSON and finally we're dispatching the addCars action with the JSON data as the payload
+  */
   const loadDataFromAPI = async () => {
     const data = await fetch("https://seat-cars-api.herokuapp.com/cars", {
       method: "GET",
@@ -23,6 +27,8 @@ const Home: React.FC<HomeInterface> = () => {
     dispatch(addCars(jsonData));
   };
 
+  /* Checking if there is any data in the local storage. If there is no data, it will fetch data from
+  the API. */
   useEffect(() => {
     const checkLocalStorage =
       getLocalStorage(LocalStorageTypes.CARS) &&
@@ -33,6 +39,7 @@ const Home: React.FC<HomeInterface> = () => {
     }
   }, []);
 
+/* A React component that is returning the cars tables and a button that toggles the addForm state. */
   return (
     <>
       <Button

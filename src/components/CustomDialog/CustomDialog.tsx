@@ -15,6 +15,7 @@ export const CustomDialog = ({ children }: Props) => {
   let openSubject$ = new Subscription();
   let closeSubject$ = new Subscription();
 
+ /* Subscribing to the subject and unsubscribing when the component unmounts. */
   useEffect(() => {
     openSubject$ = dialogOpenSubject$.getSubject.subscribe(() =>
       handleClickOpen()
