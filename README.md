@@ -52,7 +52,7 @@ You can see a live demo deployed on Vercel here: [DEMO](https://my-garage-app.ve
 ## Available Scripts
 
 First of all you will need to install all dependencies, to do that you could use 
-### `npm install` or ### `yarn`
+### `npm install` or `yarn`
 
 Then in the project directory, you can run:
 
