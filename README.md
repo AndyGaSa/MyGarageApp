@@ -4,6 +4,8 @@ My garage App is an application where the user can see a list of Cars , add Cars
 
 The data is being fetch from my own <a href="https://seat-cars-api.herokuapp.com/cars"> API </a> made on JSON Web server and hosted on Heroku.
 
+You can see a live demo deployed on Vercel here: [DEMO](https://my-garage-app.vercel.app/).
+
 ## 💻 Technologies I used:
 
 
