@@ -49,7 +49,10 @@ The data is being fetch from my own <a href="https://seat-cars-api.herokuapp.com
 
 ## Available Scripts
 
-In the project directory, you can run:
+First of all you will need to install all dependencies, to do that you could use 
+### `npm install` or ### `yarn`
+
+Then in the project directory, you can run:
 
 ### `npm run dev`
 
