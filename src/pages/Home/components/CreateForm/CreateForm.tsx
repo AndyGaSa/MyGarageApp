@@ -56,7 +56,7 @@ const CreateForm: React.FC<CreateFormInterface> = () => {
    * @param {Car} car - Car - this is the car object that is passed in from the CarForm component.
    */
   const handleChange = (car: Car) => {
-    car.id = stateCars.length + 1;
+    car.id = stateCars?.length + 1;
     const newCarsList = [...stateCars, car];
     dispatch(addCars(newCarsList));
   };
