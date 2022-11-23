@@ -50,18 +50,18 @@ const CreateForm: React.FC<CreateFormInterface> = () => {
   const stateCars = useSelector((store: AppStore) => store.cars);
   const theme = createTheme();
 
-/**
- * We're taking the current state of the cars list, adding a new car to it, and then dispatching the
- * new list to the reducer
- * @param {Car} car - Car - this is the car object that is passed in from the CarForm component.
- */
+  /**
+   * We're taking the current state of the cars list, adding a new car to it, and then dispatching the
+   * new list to the reducer
+   * @param {Car} car - Car - this is the car object that is passed in from the CarForm component.
+   */
   const handleChange = (car: Car) => {
     car.id = stateCars.length + 1;
     const newCarsList = [...stateCars, car];
     dispatch(addCars(newCarsList));
   };
 
-/* A hook that is used to handle form state and validation. */
+  /* A hook that is used to handle form state and validation. */
   const formik = useFormik({
     initialValues: {
       name: "",

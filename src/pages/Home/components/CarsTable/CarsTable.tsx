@@ -18,17 +18,17 @@ const CarsTable: React.FC<CarsTableInterface> = () => {
   const findCar = (car: Car) => !!selectedCars.find((c) => c.id === car.id);
   const filterCar = (car: Car) => selectedCars.filter((c) => c.id !== car.id);
 
-/**
- * If the car is already in the selectedCars array, then filter it out, otherwise add it to the array
- * @param {Car} car - Car - the car that was selected
- */
+  /**
+   * If the car is already in the selectedCars array, then filter it out, otherwise add it to the array
+   * @param {Car} car - Car - the car that was selected
+   */
   const handleChange = (car: Car) => {
     const filteredCars = findCar(car) ? filterCar(car) : [...selectedCars, car];
     dispatch(addFavorite(filteredCars));
     setSelectedCars(filteredCars);
   };
 
- /* Defining the columns of the table. */
+  /* Defining the columns of the table. */
   const columns = [
     {
       field: "name",
@@ -71,13 +71,13 @@ const CarsTable: React.FC<CarsTableInterface> = () => {
     },
   ];
 
- /* A hook that is called after every render. It only
+  /* A hook that is called after every render. It only
  calls the callback if the favoriteCars state have changed. */
   useEffect(() => {
     setSelectedCars(favoriteCars);
   }, [favoriteCars]);
 
- /* Rendering the table. */
+  /* Rendering the table. */
   return (
     <DataGrid
       components={{
