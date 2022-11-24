@@ -50,7 +50,7 @@ const Home: React.FC<HomeInterface> = () => {
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
       >
-        {!addForm ? "Add a new car" : "X"}
+        {!addForm ? "Add a new car" : " Close form"}
       </Button>
       {addForm ? <CreateForm /> : null}
       <CarsTable />
